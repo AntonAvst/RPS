@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Rock Paper Scissors</title>
+</head>
+<!-- comment here! -->
+ <!-- shortcut! -->
+<body>
+    <script>
+        // Your JavaScript goes here!
+        function getComputerChoise ()
+        {
+            rand_num = Math.random * 3 
+            if (rand_num > 0 && rand_num <= 1){
+                choice = 'rock';
+            }
+            else if(rand_num > 1 && rand_num <= 2){
+                choice = 'paper'
+            }
+            else if(rand_num > 2 && rand_num <= 3){
+                choice = 'scissors'
+            }
+            return choice
+        }     
+
+        console.log(getComputerChoise());
+    </script>
+
+    <h1>Welcome To Rock Paper Scissors!</h1>
+     
+    <p><strong>Choose Rock, paper or scissors</strong></p>
+
+    <ul>
+        <li>Scissors beats paper</li>
+        <li>Paper beats rock</li>
+        <li>Rock beats schssors</li>
+    </ul>
+
+</body>
+
+</html>
