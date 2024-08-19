@@ -11,9 +11,17 @@
 <body>
     <script>
         // Your JavaScript goes here!
-        function getComputerChoise ()
+        human_score = 0;
+        computer_score = 0;
+        max_num_of_rounds = 5;
+        rounds_palyed = 0;
+        
+        function getComputerChoise (rand_num)
         {
-            rand_num = Math.random * 3 
+            var choice;
+            const c_choice = 'computer chose - '
+            rand_num = Math.random() * 3;            
+            console.log(rand_num);
             if (rand_num > 0 && rand_num <= 1){
                 choice = 'rock';
             }
@@ -23,10 +31,110 @@
             else if(rand_num > 2 && rand_num <= 3){
                 choice = 'scissors'
             }
+            console.log(c_choice.concat(choice))
             return choice
-        }     
+        }
+        
+        function getHumanChoice(){
+            let choice = prompt("What's your choice?")
+            if (choice.substring(0,1).toLowerCase() == 'r'){
+                return 'rock';
+            }
+            else if(choice.substring(0,1).toLowerCase() == 'p'){
+                return 'paper';
+            }
+            else if (choice.substring(0,1).toLowerCase() == 's'){
+                return 'scissors';
+            }
+            else{
+                console.log('no legal choice was made, choosing randomly for you!')
+                rand_num = Math.random() * 3;
+                console.log('computer chose for you - ')
+                console.log(getComputerChoise(rand_num))
+                return getComputerChoise(rand_num);
+            }
+        }
 
-        console.log(getComputerChoise());
+        function printScore(){
+            console.log('current score:')
+            console.log('Human: ', human_score)
+            console.log('Computer: ', computer_score)
+        }
+
+        function humanWon(){
+            human_score++
+            console.log('human won!')
+            printScore()
+            
+        }
+
+        function computerWon(){
+            computer_score++
+            console.log('computer won!')            
+            printScore()
+            
+        }
+
+        function playRound(computer_choice, human_choice){
+            if (computer_choice == 'rock'){
+                if (human_choice == 'paper'){
+                    humanWon()
+                }
+                else if(human_choice == 'scissors'){
+                    computerWon()
+                }
+                else{
+                    console.log('Draw!')
+                }
+            }
+
+            if (computer_choice == 'paper'){
+                if (human_choice == 'scissors'){
+                    humanWon()
+                }
+                else if(human_choice == 'rock'){
+                    computerWon()
+                }
+                else{
+                    console.log('Draw!')
+                }
+            }
+
+            if (computer_choice == 'scissors'){
+                if (human_choice == 'rock'){
+                    humanWon()
+                }
+                else if(human_choice == 'paper'){
+                    computerWon()
+                }
+                else{
+                    console.log('Draw!')
+                }
+            }
+
+            rounds_palyed++
+        }
+
+        function endOfGameLogic(h_score, c_score){
+            printScore() 
+               if (h_score > c_score){                
+                console.log("Human Won!")
+            }
+            else if(h_score < c_score){
+                console.log("Computer Won!")
+            }
+            else{
+                console.log("Draw!")
+            }
+        }
+
+        while (rounds_palyed < max_num_of_rounds){
+            console.log("round - ", rounds_palyed + 1)
+            const c = getComputerChoise()
+            const h = getHumanChoice()
+            playRound(c, h)
+        }            
+
     </script>
 
     <h1>Welcome To Rock Paper Scissors!</h1>
